@@ -1,0 +1,92 @@
+# ==============================================================================
+# Legacy Unused Directories (Ignored so only new folders are tracked)
+# ==============================================================================
+backend/
+frontend/
+
+# ==============================================================================
+# Dependency Folders (e-commerce-backend and e-commerce-frontend)
+# ==============================================================================
+node_modules/
+**/node_modules/
+e-commerce-backend/node_modules/
+e-commerce-frontend/node_modules/
+jspm_packages/
+
+# ==============================================================================
+# Environment & Secret Files (Exclude from Git across all directories)
+# ==============================================================================
+.env
+**/.env
+.env.*
+**/.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+e-commerce-backend/.env
+e-commerce-frontend/.env
+backend/.env
+frontend/.env
+
+# Whitelist environment example templates so they are tracked by Git
+!.env.example
+!**/.env.example
+!e-commerce-backend/.env.example
+!e-commerce-frontend/.env.example
+!backend/.env.example
+!frontend/.env.example
+
+# ==============================================================================
+# Build & Distribution Artifacts
+# ==============================================================================
+dist/
+**/dist/
+e-commerce-frontend/dist/
+frontend/dist/
+tmp/
+out-tsc/
+bazel-out/
+
+# ==============================================================================
+# Framework & Build Tool Caches
+# ==============================================================================
+.angular/
+**/.angular/
+e-commerce-frontend/.angular/
+frontend/.angular/
+.sass-cache/
+
+# ==============================================================================
+# Logs & Diagnostic Dumps
+# ==============================================================================
+logs/
+**/logs/
+e-commerce-backend/logs/
+backend/logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ==============================================================================
+# Operating System & Metadata Files
+# ==============================================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==============================================================================
+# Editor & IDE Settings
+# ==============================================================================
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
