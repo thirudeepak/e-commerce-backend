@@ -14,8 +14,6 @@ const PORT = process.env.PORT || 5000;
 async function startServer() {
   try {
     // Connect to DB and sync models
-    await connectDB();
-
     const server = app.listen(PORT, () => {
       logger.info(
         `Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`
