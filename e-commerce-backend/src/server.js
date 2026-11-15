@@ -4,7 +4,6 @@ const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 const app = require('./app');
-const { connectDB } = require('./config/database');
 const logger = require('./config/logger');
 
 // Trigger model registration so Sequelize knows all models before sync
