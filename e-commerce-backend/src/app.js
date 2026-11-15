@@ -37,6 +37,15 @@ app.options('*', cors(corsOptions));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
+// ─── Normalize Duplicate Slashes in URLs ─────────────────────────────────────
+// Strips duplicate consecutive slashes (e.g. /api//auth/login -> /api/auth/login)
+app.use((req, res, next) => {
+  if (req.url && req.url.includes('//')) {
+    req.url = req.url.replace(/\/{2,}/g, '/');
+  }
+  next();
+});
+
 // ─── Rate Limiter for Auth routes ─────────────────────────────────────────────
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
