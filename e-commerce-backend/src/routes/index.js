@@ -12,12 +12,12 @@ const dashboardRouter = require('./dashboard.routes');
 
 const router = Router();
 
-router.use('auth',      authRouter);
-router.use('products',  productRouter);
-router.use('cart',      cartRouter);
-router.use('wishlist',  wishlistRouter);
-router.use('payments',  paymentRouter);
-router.use('orders',    orderRouter);
-router.use('dashboard', dashboardRouter);
+router.use('/auth',      authRouter);
+router.use('/products',  productRouter);
+router.use('/cart',      cartRouter);
+router.use('/wishlist',  wishlistRouter);
+router.use('/payments',  paymentRouter);
+router.use('/orders',    orderRouter);
+router.use('/dashboard', dashboardRouter);
 
 module.exports = router;
