@@ -31,49 +31,6 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
     timestamps: true,
   },
 });
-
-/**
- * Ensure the target database exists before Sequelize connects to it.
- * Uses a temporary root-level mysql2/promise connection.
- */
-async function ensureDatabaseExists() {
-  const connection = await mysql.createConnection({
-    host: DB_HOST,
-    port: parseInt(DB_PORT, 10) || 3306,
-    user: DB_USER,
-    password: DB_PASSWORD,
-  });
-
-  try {
-    await connection.query(
-      `CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;`
-    );
-    logger.info(`Database "${DB_NAME}" is ready.`);
-  } finally {
-    await connection.end();
-  }
-}
-
-/**
- * Connect to the database: ensure DB exists, authenticate, then sync models.
- */
-async function connectDB() {
-  try {
-    await ensureDatabaseExists();
-
-    await sequelize.authenticate();
-    logger.info('Database connection established successfully.');
-
-    if (NODE_ENV === 'development') {
-      await sequelize.sync({ alter: true });
-      logger.info('Sequelize models synchronized (alter: true).');
-    } else {
-      await sequelize.sync({ force: false });
-      logger.info('Sequelize models synchronized (force: false).');
-    }
-  } catch (error) {
-    logger.error('Unable to connect to the database:', error);
-    throw error;
   }
 }
 
