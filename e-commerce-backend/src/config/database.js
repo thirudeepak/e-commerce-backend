@@ -13,41 +13,23 @@ const DB_NAME = process.env.DB_NAME || 'ecommerce_db';
 const DB_PORT = parseInt(process.env.DB_PORT, 10) || 3306;
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
-// Create Sequelize instance (supports connection URI like DATABASE_URL / MYSQL_URL, or individual parameters)
-const dbUri = process.env.DATABASE_URL || process.env.MYSQL_URL;
-
-const sequelize = dbUri
-  ? new Sequelize(dbUri, {
-      dialect: 'mysql',
-      logging: false,
-      pool: {
-        max: 10,
-        min: 0,
-        acquire: 30000,
-        idle: 10000,
-      },
-      define: {
-        underscored: false,
-        freezeTableName: false,
-        timestamps: true,
-      },
-    })
-  : new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
-      host: DB_HOST,
-      port: DB_PORT,
-      dialect: 'mysql',
-      logging: false,
-      pool: {
-        max: 10,
-        min: 0,
-        acquire: 30000,
-        idle: 10000,
-      },
-      define: {
-        underscored: false,
-        freezeTableName: false,
-        timestamps: true,
-      },
-    });
+// Create Sequelize instance
+const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+  host: DB_HOST,
+  port: parseInt(DB_PORT, 10) || 3306,
+  dialect: 'mysql',
+  logging: false,
+  pool: {
+    max: 10,
+    min: 0,
+    acquire: 30000,
+    idle: 10000,
+  },
+  define: {
+    underscored: false,
+    freezeTableName: false,
+    timestamps: true,
+  },
+});
 
 module.exports = { sequelize };
